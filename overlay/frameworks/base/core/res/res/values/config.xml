@@ -44,10 +44,11 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>15</item>
-        <item>150</item>
-        <item>1000</item>
-        <item>5000</item>
+        <item>40</item>
+        <item>200</item>
+        <item>450</item>
+        <item>1400</item>
+        <item>2000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -55,10 +56,11 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>20</item>
-        <item>80</item>
-        <item>130</item>
-        <item>190</item>
+        <item>15</item>
+        <item>30</item>
+        <item>55</item>
+        <item>90</item>
+        <item>255</item>
         <item>255</item>
     </integer-array>
 
@@ -69,9 +71,10 @@
     <integer-array name="config_autoBrightnessButtonBacklightValues">
         <item>1</item>
         <item>1</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
     </integer-array>
 
 
@@ -118,8 +121,8 @@
          USB interfaces.  If the device doesn't want to support tething over USB this should
          be empty.  An example would be "usb.*" -->
     <string-array translatable="false" name="config_tether_usb_regexs">
-        <item>"rndis"</item>
-        <item>"usb"</item>
+        <item>"rndis0"</item>
+        <item>"usb0"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -127,7 +130,6 @@
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
         <item>"wlan0"</item>
-        <item>"softap.*"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -150,11 +152,11 @@
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
 
-    <!-- Boolean indicating whether the wifi chipset has p2p support
-    <bool translatable="false" name="config_wifi_p2p_support">true</bool> -->
-
     <!-- Boolean indicating whether the wifi chipset has background scan support -->
-    <bool translatable="false" name="config_wifi_background_scan_support">false</bool>
+    <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
+
+    <!-- WiFi batched scanning -->
+    <bool translatable="false" name="config_wifi_batched_scan_supported">false</bool>
 
     <!-- Enables or disables fading edges when marquee is enabled in TextView. -->
     <bool name="config_ui_enableFadingMarquee">false</bool>
@@ -175,7 +177,7 @@
     <!-- Does the battery LED support multiple colors? Used to decide if the user can change the colors -->
     <bool name="config_multiColorBatteryLed">true</bool>
 
-<!-- Vibrator pattern for feedback about a long screen/key press -->
+    <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
         <item>1</item>
@@ -222,39 +224,36 @@
         <item>10</item>
     </integer-array>
 
-    <!-- Workaround for devices with broken keyboards
-    <bool name="config_forceDisableHardwareKeyboard">true</bool> -->
+    <!-- Workaround for devices with broken keyboards -->
+    <bool name="config_forceDisableHardwareKeyboard">true</bool>
 
     <!-- Indicate whether the SD card is accessible without removing the battery. -->
     <bool name="config_batterySdCardAccessibility">true</bool>
 
-    <!-- Disable the home key unlock setting
-    <bool name="config_disableHomeUnlockSetting">false</bool> -->
+    <!-- Disable the home key unlock setting -->
+    <!-- <bool name="config_disableHomeUnlockSetting">false</bool> -->
+
+    <!-- Hardware 'face' keys present on the device, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following keys present:
+             1 - Home
+             2 - Back
+             4 - Menu
+             8 - Assistant (search)
+            16 - App switch
+         For example, a device with Home, Back and Menu keys would set this
+         config to 7. -->
+    <integer name="config_deviceHardwareKeys">7</integer>
 
     <bool name="config_enableWifiDisplay">true</bool>
 
-    <!-- Panel auto-brightness configuration value
-    <integer name="config_panelAutoBrightnessValue">1</integer> -->
+    <!-- Base "touch slop" value used by ViewConfiguration as a
+         movement threshold where scrolling should begin. -->
+    <dimen name="config_viewConfigurationTouchSlop">4dp</dimen>
 
-    <!-- empty string to disable, or eg: /sys/kernel/fast_charge/force_fast_charge
-    for a custom path the delivered kernel supports.
-    it is disabled by default so devices need to add an overlay to enable
-    <string name="config_fastChargePath" translatable="false">/sys/kernel/fast_charge/force_fast_charge</string> -->
+    <!-- Indicate whether closing the lid causes the device to go to sleep and opening
+         it causes the device to wake up.
+         The default is false. -->
+    <bool name="config_lidControlsSleep">true</bool>
 
-    <!-- True if the Irda service should be started at system start. This currently only
-         supports Samsung Galaxy S4.
-    <bool name="config_enableIrdaManagerService">true</bool> -->
-
-    <!-- Hardware "softkeys" present on the device, stored as a bit field.
-         This integer should equal the sum of the corresponding value for each
-         of the following keys present:
-            1 - Home
-            2 - Back
-            4 - Menu
-            8 - Assistant (search)
-           16 - App switch
-        For example, a device with Home, Back and Menu keys would set this
-        config to 7. -->
-    <integer name="config_deviceHardwareKeys">7</integer>
-
-</resources>
+  </resources>
