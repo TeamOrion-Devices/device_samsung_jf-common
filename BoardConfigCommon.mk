@@ -79,8 +79,8 @@ BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGING_CMDLINE_NAME := "androidboot.bootchg"
 BOARD_CHARGING_CMDLINE_VALUE := "true"
 
-# CMHW
-BOARD_HARDWARE_CLASS += device/samsung/jf-common/cmhw
+# Hardware
+BOARD_HARDWARE_CLASS := device/samsung/jf-common/cmhw
 
 # Display
 BOARD_EGL_CFG := device/samsung/jf-common/configs/egl.cfg
